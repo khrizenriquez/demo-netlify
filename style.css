@@ -1,0 +1,28 @@
+body, html {
+    font-family: 'Macondo', cursive;
+    font-size: 16px;
+}
+#main-container {
+    margin: 50px auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+    background: blue;
+}
+.list-item {
+    background: red;
+    margin: 0.5em;
+}
+.image-container {
+    height: 400px;
+    overflow: hidden;
+}
+.items-container {
+    padding: 0.5em;
+}
+@media (max-width: 1200px) {
+    #main-container {
+        width: 80%;
+        grid-template-columns: repeat(2, 50%);
+    }
+}
