@@ -2,6 +2,10 @@ body, html {
     font-family: 'Macondo', cursive;
     font-size: 16px;
 }
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 #main-container {
     margin: 50px auto;
     width: 90%;
@@ -17,12 +21,77 @@ body, html {
     height: 400px;
     overflow: hidden;
 }
+.image-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
 .items-container {
     padding: 0.5em;
+}
+
+
+/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-box {
+    background-color: transparent;
+    height: 400px;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+  
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+  }
+  
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+  
+/* Style the front side (fallback if image is missing) */
+.flip-box-front {
+    background-color: #bbb;
+    color: black;
+}
+  
+/* Style the back side */
+.flip-box-back {
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
+    overflow: hidden;
+}
+.flip-box-back div {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    padding-top: 1em;
 }
 @media (max-width: 1200px) {
     #main-container {
         width: 80%;
         grid-template-columns: repeat(2, 50%);
+    }
+}
+@media (max-width: 600px) {
+    #main-container {
+        width: 95%;
+        grid-template-columns: repeat(1, 100%);
+    }
+    .image-container {
+        height: 500px;
     }
 }
