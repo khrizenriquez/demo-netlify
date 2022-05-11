@@ -5,6 +5,10 @@ body, html {
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0px;
     margin-bottom: 0px;
+    color: black;
+}
+a {
+    text-decoration: none;
 }
 #main-container {
     margin: 50px auto;
@@ -16,6 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 .list-item {
     background: red;
     margin: 0.5em;
+    cursor: pointer;
 }
 .image-container {
     height: 400px;
@@ -79,6 +84,10 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(0, 0, 0, 0.5);
     height: 100%;
     padding-top: 1em;
+}
+.flip-box-back h2, 
+.flip-box-back p {
+    color: white
 }
 @media (max-width: 1200px) {
     #main-container {

@@ -59,7 +59,7 @@ const fillMovieSection = (movieData) => {
 
     let rawContent = ''
     movieData.forEach((element, index) => {
-        rawContent +=   `<div class="list-item">
+        rawContent +=   `<div class="list-item" data-move-id='${ element.id }'>
                             ${ movieImage(element.poster_path, 
                                 element.backdrop_path, 
                                 element.title, 
