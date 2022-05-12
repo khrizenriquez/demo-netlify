@@ -8,7 +8,8 @@ let starProperties = [{
 }];
 
 //  -------------------- Functions definitions
-const loadMovieS = () => {
+const loadMovies = () => {
+    showLoader()
     const fetchMovie = async () => {
         const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=42431c3f9638f4b0885de2c95c89be4c')
         
@@ -16,12 +17,32 @@ const loadMovieS = () => {
         return movies
     }
     fetchMovie().then(movies => {
+        if (movies.results.length <= 0) return emptyResult()
         return fillMovieSection(movies.results)
     })
     fetchMovie().catch(error => console.log(error))
 }
+
+const searchMovieByQuery = (query) => {
+    const fetchMovie = async () => {
+        const response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=42431c3f9638f4b0885de2c95c89be4c&query=' + query)
+        
+        const movies = await response.json()
+        return movies
+    }
+    fetchMovie().then(movies => {
+        if (movies.results.length <= 0) return emptyResult(query)
+        return fillMovieSection(movies.results)
+    })
+    fetchMovie().catch(error => console.log(error))
+}
+const emptyResult = (searchText = 'tú búsqueda') => {
+    const itemContainer = document.querySelector('#main-container')
+    itemContainer.innerHTML = `<h1>No se han encontrado resultados para ${ searchText }</h1>`
+
+    hideLoader()
+}
 const fillMovieSection = (movieData) => {
-    console.log(movieData)
     const itemContainer = document.querySelector('#main-container')
 
     //  Cleaning up the main container
@@ -78,7 +99,31 @@ const fillMovieSection = (movieData) => {
 
         starContent(className)
     })
+
+    hideLoader()
+}
+
+const showLoader = () => {
+    document.querySelector('.loader-container').classList.add('show')
+}
+const hideLoader = () => {
+    document.querySelector('.loader-container').classList.remove('show')
 }
 
 //  -------------------- Init
-loadMovieS()
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadMovies()
+
+    document.querySelector('.btn-search').addEventListener('click', (evt) => {
+        evt.preventDefault()
+        showLoader()
+        const searchText = document.querySelector('.input-search').value
+
+        if (searchText.lenght <= 0) {
+            return false
+        }
+        let parsedSearch = encodeURI(searchText)
+        searchMovieByQuery(searchText)
+    })
+})

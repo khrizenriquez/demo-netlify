@@ -10,15 +10,119 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration: none;
 }
+/*  search option*/
+*{
+    box-sizing: border-box;
+}
+.search-box{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    margin: 3em auto;
+}
+.input-search{
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #22a6b3;
+    padding-right: 40px;
+    color:#000;
+}
+.input-search::placeholder{
+    color:rgba(0,0,0,.5);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+}
+.btn-search{
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color:black ;
+    background-color:transparent;
+    pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid rgba(0,0,0,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid rgba(0,0,0,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+/*  search option*/
+
+.loader-container.show {
+    display: block;
+}
+.loader-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+.loader {
+    position: absolute;
+    width:  100px;
+    height: 100px;
+    background: #de3500;
+    transform: rotateX(65deg) rotate(45deg);
+    /* remove bellows command for perspective change */
+    transform: perspective(200px) rotateX(65deg) rotate(45deg); 
+    color: #fff;
+    animation: layers1 1s linear infinite alternate;
+    left: 50%;
+    right: 50%;
+    top: 40%;
+    bottom: 50%;
+  }
+  .loader:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    animation: layerTr 1s linear infinite alternate;
+  }
+
+  @keyframes layers1 {
+    0% { box-shadow: 0px 0px 0 0px  }
+   90% , 100% { box-shadow: 20px 20px 0 -4px  }
+  }
+  @keyframes layerTr {
+    0% { transform:  translate(0, 0) scale(1) }
+    100% {  transform: translate(-25px, -25px) scale(1) }
+  }
+      
+
 #main-container {
     margin: 50px auto;
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(3, 33.33%);
-    background: blue;
+    grid-template-columns: repeat(4, 25%);
 }
 .list-item {
-    background: red;
     margin: 0.5em;
     cursor: pointer;
 }
@@ -27,7 +131,7 @@ a {
     overflow: hidden;
 }
 .image-container img {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }
@@ -69,16 +173,16 @@ a {
   
 /* Style the front side (fallback if image is missing) */
 .flip-box-front {
-    background-color: #bbb;
+    border-radius: 10px;
     color: black;
 }
   
 /* Style the back side */
 .flip-box-back {
-    background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
     overflow: hidden;
+    border-radius: 10px;
 }
 .flip-box-back div {
     background: rgba(0, 0, 0, 0.5);
